@@ -1,6 +1,7 @@
 package com.example.store.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
@@ -9,6 +10,8 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name="products")
@@ -40,5 +43,14 @@ public class Product {
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name="orders_has_products",
+            joinColumns = @JoinColumn(name="product_id"), //Esta clase
+            inverseJoinColumns = @JoinColumn(name="order_id") //La clase relacionada
+    )
+    private List<Order> orders;
 
 }

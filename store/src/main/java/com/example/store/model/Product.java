@@ -1,5 +1,7 @@
 package com.example.store.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -29,9 +31,12 @@ public class Product {
     @Column(columnDefinition="TEXT")
     private String description;
 
+
+    @JsonManagedReference
     @OneToOne(mappedBy="product", fetch=FetchType.LAZY,cascade=CascadeType.ALL)
     private ProductDetail detail;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;

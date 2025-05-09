@@ -1,5 +1,6 @@
 package com.example.store.controller;
 
+import com.example.store.dto.ProductDTO;
 import com.example.store.model.Product;
 import com.example.store.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,12 @@ public class ProductController {
     public ResponseEntity<Product> createNewProduct(@RequestBody Product product) {
         Product newProduct = productService.saveWithoutDTO(product);
         return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody Product product) {
+        ProductDTO newProductDto = productService.saveProduct(product);
+        return new ResponseEntity<>(newProductDto, HttpStatus.CREATED);
     }
 
 }

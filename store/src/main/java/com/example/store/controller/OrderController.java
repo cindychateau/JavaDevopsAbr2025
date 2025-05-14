@@ -20,6 +20,7 @@ public class OrderController {
     @GetMapping
     public ResponseEntity<List<OrderDTO>> getOrders() {
         List<OrderDTO> orders = orderService.getOrders();
+        //1. hay ordenes( orders.size > 0) - 2. no hay ordenes (orders.size == 0)
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 

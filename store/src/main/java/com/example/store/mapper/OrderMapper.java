@@ -2,6 +2,7 @@ package com.example.store.mapper;
 
 import com.example.store.dto.OrderDTO;
 import com.example.store.dto.ProductDTO;
+import com.example.store.model.ExpirableOrder;
 import com.example.store.model.Order;
 import com.example.store.model.Product;
 import org.mapstruct.InheritInverseConfiguration;
@@ -26,4 +27,5 @@ public interface OrderMapper {
     @InheritInverseConfiguration
     Order orderDTOToOrder(OrderDTO orderDTO);
 
+    ExpirableOrder expirableOrderDTOToOrder(OrderDTO orderDTO);
 }

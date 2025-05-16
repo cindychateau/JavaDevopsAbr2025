@@ -15,6 +15,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
 
+    // 1.) Recibir peticiones HTTP de Ordenes
+    //  2. ) consumir servicio de productos/usuarios7-.....
+    // 3.) Validar que el producto cumpla con X
+    //
+     //
+     //
+     //
+
+
     private final OrderService orderService;
 
     @GetMapping
@@ -25,7 +34,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<OrderDTO> createOrder(@Valid @RequestBody OrderDTO orderDTO) {
+    public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
         OrderDTO newOrder = orderService.saveOrder(orderDTO);
         return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
     }

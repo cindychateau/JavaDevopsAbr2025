@@ -1,7 +1,7 @@
 package com.example.store.controller;
 
 import com.example.store.dto.OrderDTO;
-import com.example.store.service.OrderService;
+import com.example.store.service.OrderServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -19,11 +19,12 @@ public class OrderControllerTest {
 
 	//Doble de prueba
 	@Mock
-	OrderService orderService;
+	OrderServiceImpl orderServiceImpl;
 
 	//Sujeto de prueba
 	@InjectMocks
 	OrderController orderController;
+
 
 	@BeforeEach//Para ejecutar este método antes de cada una de las pruebas
 	public void setup() {
@@ -34,12 +35,12 @@ public class OrderControllerTest {
 	@Test
 	public void testReturningOrders() {
 		//Arrange (Arreglar)
-		when(orderService.getOrders())
-				.thenReturn(List.of(new OrderDTO(1L, "Order DTO 1", null)));
+		when(orderServiceImpl.getOrders())
+				.thenReturn(List.of(new OrderDTO(1L, "Order DTO 1", null, null)));
 		//Act(Actuar)
 		ResponseEntity<List<OrderDTO>> responseEntity = orderController.getOrders();
 		//Assert(Validar)
-		OrderDTO expectedOrder = new OrderDTO(1L, "Order DTO 1", null);
+		OrderDTO expectedOrder = new OrderDTO(1L, "Order DTO 1", null, null);
 		//Status Code
 		assertEquals(org.springframework.http.HttpStatus.OK, responseEntity.getStatusCode());
 		assertEquals(java.util.List.of(expectedOrder), responseEntity.getBody());

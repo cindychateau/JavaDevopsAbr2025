@@ -2,7 +2,7 @@ package com.example.store.mockmvc;
 
 import com.example.store.controller.OrderController;
 import com.example.store.dto.OrderDTO;
-import com.example.store.service.OrderService;
+import com.example.store.service.OrderServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,18 +33,18 @@ public class OrderMockMvcTest {
 	MockMvc mockMvc;
 
 	@MockitoBean
-	OrderService orderService;
+	OrderServiceImpl orderServiceImpl;
 
 	@Test
 	void testGetMethod() throws Exception {
-		when(orderService.getOrders()).thenReturn(List.of(new OrderDTO(1L, "Order mock", null)));
+		when(orderServiceImpl.getOrders()).thenReturn(List.of(new OrderDTO(1L, "Order mock", null, null)));
 		this.mockMvc.perform(get("/api/orders")).andDo(print()).andExpect(status().isOk());
 	}
 
 	@Test
 	void testPostMethod() throws Exception {
-		when(orderService.saveOrder(any())).thenReturn(new OrderDTO(1L, "Order mock", null));
-		String request = new ObjectMapper().writeValueAsString(new OrderDTO(1L, "Order mock", null));
+		when(orderServiceImpl.saveOrder(any())).thenReturn(new OrderDTO(1L, "Order mock", null, null));
+		String request = new ObjectMapper().writeValueAsString(new OrderDTO(1L, "Order mock", null, null));
 		MvcResult mvcResult = this.mockMvc.perform(post("/api/orders").contentType(APPLICATION_JSON)
 				.content(request)).andDo(print()).andExpect(status().isCreated()).andReturn();
 

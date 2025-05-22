@@ -1,5 +1,6 @@
 package com.example.store.model;
 
+import com.example.store.model.enums.ProductType;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -43,6 +44,8 @@ public class Product {
     @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
+
+    protected ProductType productType = ProductType.NON_EXPIRABLE;
 
     @JsonIgnore
     @ManyToMany

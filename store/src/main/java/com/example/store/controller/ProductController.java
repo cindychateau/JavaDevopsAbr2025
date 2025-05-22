@@ -1,8 +1,10 @@
 package com.example.store.controller;
 
+import com.example.store.dto.ExpirableProductDTO;
 import com.example.store.dto.ProductDTO;
+import com.example.store.model.ExpirableProduct;
 import com.example.store.model.Product;
-import com.example.store.service.ProductService;
+import com.example.store.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductService productService;
+    private final ProductServiceImpl productService;
 
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
@@ -30,7 +32,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody Product product) {
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ExpirableProductDTO product) {
         ProductDTO newProductDto = productService.saveProduct(product);
         return new ResponseEntity<>(newProductDto, HttpStatus.CREATED);
     }

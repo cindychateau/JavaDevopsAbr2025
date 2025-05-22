@@ -24,7 +24,7 @@ public interface OrderMapper {
     
     List<OrderDTO> ordersToOrderDTOs(List<Order> orders);
     
-    @InheritInverseConfiguration
+
     Order orderDTOToOrder(OrderDTO orderDTO);
 
     ExpirableOrder expirableOrderDTOToOrder(OrderDTO orderDTO);

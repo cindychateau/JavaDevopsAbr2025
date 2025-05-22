@@ -10,6 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name="orders")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorValue("not null")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
